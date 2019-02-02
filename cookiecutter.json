@@ -1,0 +1,7 @@
+{
+	"project": "example",
+	"project_slug": "{{cookiecutter.project.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim()}}",
+	"version": "0.1.0",
+	"description": "N/A",
+	"author_email": "N/A"
+}

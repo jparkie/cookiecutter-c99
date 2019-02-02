@@ -1,0 +1,45 @@
+FROM ubuntu:18.04
+
+LABEL maintainer="jparkie <https://github.com/jparkie>"
+LABEL description="A Docker image used for building cookiecutter-c projects"
+
+ENV CC="clang"
+ENV CXX="clang++"
+ENV PATH $PATH:/usr/local/oclint-0.13.1/bin
+
+# Install C Project Tools:
+# - Compiler: clang
+# - Code Coverage: gcov
+# - Code Formatter: clang-format
+# - Debugger: gdb
+# - Documentation: doxygen
+# - Dynamic Analysis: valgrind
+# - Package Configs: pkg-config
+# - Project Management: cmake
+# - Profiler: gprof
+# - Static Analysis: scan-build
+RUN apt-get update && apt-get install -y \
+  clang \
+  clang-format \
+  clang-tools \
+  cmake \
+  curl \
+  doxygen \
+  git \
+  gdb \
+  make \
+  pkg-config \
+  python3-pip \
+  valgrind \
+  && rm -rf /var/lib/apt/lists/*
+
+# Install Python Project Tools:
+# - Package Manager: conan
+RUN pip3 install conan cmake_format
+
+# Install oclint:
+RUN curl --silent --location https://github.com/oclint/oclint/releases/download/v0.13.1/oclint-0.13.1-x86_64-linux-4.4.0-112-generic.tar.gz \
+  | tar --extract --gzip --file - --directory /usr/local \
+  && oclint -version
+
+WORKDIR /repo

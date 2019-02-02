@@ -1,0 +1,37 @@
+pipeline {
+	agent none
+	stages {
+		stage('Checkout') {
+			agent any
+			steps {
+				checkout scm
+			}
+		}
+		stage('Clean') {
+			agent any
+			steps {
+				sh 'make clean'
+			}
+		}
+		stage('Compile') {
+			agent {
+				dockerfile {
+					filename 'Dockerfile.c99'
+				}
+			}
+			steps {
+				sh 'make compile'
+			}
+		}
+		stage('Unit Test') {
+            agent {
+                dockerfile {
+                    filename 'Dockerfile.py36'
+                }
+            }
+            steps {
+                sh 'make test'
+            }
+        }
+	}
+}
