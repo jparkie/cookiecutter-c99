@@ -48,10 +48,10 @@ author_email [N/A]:
 
 ### Dockerfile + Makefile + Jenkinsfile
 
-- A Dockerfile.c99 with useful C99 toolchains is provided to build the project.
-- A Dockerfile.py36 with useful Python 3.6 toolchains is provided to test the project.
-- A Makefile is provided to execute various project commands within a Docker container.
-- A Jenkinsfile is provided with the following stages: Checkout, Clean, Compile and Unit Test.
+- A `Dockerfile.c99` with useful C99 toolchains is provided to build the project.
+- A `Dockerfile.py36` with useful Python 3.6 toolchains is provided to test the project.
+- A `Makefile` is provided to execute various project commands within a Docker container.
+- A `Jenkinsfile` is provided with the following stages: Checkout, Clean, Compile and Unit Test.
 
 #### Makefile
 
