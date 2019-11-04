@@ -26,11 +26,21 @@ pipeline {
 		stage('Unit Test') {
             agent {
                 dockerfile {
-                    filename 'Dockerfile.py36'
+                    filename 'Dockerfile.c99'
                 }
             }
             steps {
-                sh 'make test'
+                sh 'make test-unit'
+            }
+        }
+        stage('Functional Test') {
+            agent {
+                dockerfile {
+                    filename 'Dockerfile.c99'
+                }
+            }
+            steps {
+                sh 'make test-functional'
             }
         }
 	}

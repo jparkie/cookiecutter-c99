@@ -2,7 +2,17 @@
 # Library
 #
 
-set(target bar)
+set(target {{cookiecutter.lib_slug}})
+
+#
+# Coverage
+#
+
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+        set(CMAKE_C_FLAGS ${CMAKE_C_FLAGS} "-g -O0 -fprofile-arcs -ftest-coverage")
+        set(CMAKE_C_OUTPUT_EXTENSION_REPLACE ON)
+        set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage")
+endif()
 
 #
 # Sources
@@ -13,11 +23,11 @@ set(srcs_path ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(hdrs_path ${CMAKE_CURRENT_SOURCE_DIR}/include/${target})
 
 set(srcs
-        ${srcs_path}/bar.c
+        ${srcs_path}/{{cookiecutter.lib_slug}}.c
 )
 
 set(hdrs
-        ${hdrs_path}/bar.h
+        ${hdrs_path}/{{cookiecutter.lib_slug}}.h
 )
 
 #

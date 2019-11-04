@@ -18,13 +18,11 @@ Welcome to {{cookiecutter.project}}!
 This project is managed with Docker. Please have Docker installed.
 
     uninstall-docker
-        Remove Docker images cookiecutter_c99 and cookiecutter_py36
+        Remove Docker images cookiecutter_c99
     init
         Initialize project directory
     docker-c99
         Start an interactive, Dockerized bash session using cookiecutter_c99
-    docker-py36
-        Start an interactive, Dockerized bash session using cookiecutter_py36
     pre-commit
         Execute pre-commit hooks
         See https://pre-commit.com/ for more information
@@ -32,29 +30,39 @@ This project is managed with Docker. Please have Docker installed.
         Clean the C99 project
     compile
         Compile the C99 project
+    compile-cffi
+        Compile the C99 project's Python CFFI
     format
         Format the C99 project's code
         See https://clang.llvm.org/docs/ClangFormat.html for more information
     lint
         Lint the C99 project's code
         See http://oclint.org/ for more information
-        Requires `make compile` to be executed prior to lint
+        Requires 'make compile' to be executed prior to lint
     static-analysis
         Analyze the C99 project's code
         See https://clang-analyzer.llvm.org/scan-build.html for more information
-        Requires `make compile` to be executed prior to analysis
-    test
-        Test the C99 project's code
+        Requires 'make compile' to be executed prior to static-analysis
+    run
+        Run executable
+        Requires 'make compile' to be executed prior to run
+    test-unit
+        Run unit tests for the C99 project's code
+        See https://github.com/bvdberg/ctest for more information
+        Requires 'make compile' to be executed prior to test-unit
+    test-functional
+        Run functional tests for the C99 project's code
         See https://docs.pytest.org/en/latest/ and https://cffi.readthedocs.io/en/latest/ for more information
+        Requires 'make compile' to be executed prior to test-functional
 ```
 
 ### Provided Tools
 
-- **Compiler**: [clang](https://clang.llvm.org/)
-- **Code Coverage**: [gcov](https://gcc.gnu.org/onlinedocs/gcc/Gcov.html)
+- **Compiler**: [gcc](https://gcc.gnu.org/)
+- **Code Coverage**: [gcov](https://gcc.gnu.org/onlinedocs/gcc/Gcov.html) + [lcov](http://ltp.sourceforge.net/coverage/lcov.php)
 - **Code Formatter**: [clang-format](https://clang.llvm.org/docs/ClangFormat.html)
 - **Code Linter**: [oclint](http://oclint.org/)
-- **Debugger**: [gdb](https://www.gnu.org/software/gdb/)
+- **Debugger**: [cgdb](https://cgdb.github.io/)
 - **Documentation**: [doxygen](http://doxygen.nl)
 - **Dynamic Analysis**: [valgrind](http://valgrind.org)
 - **Package Configs**: [pkg-config](https://www.freedesktop.org/wiki/Software/pkg-config/)
@@ -62,7 +70,7 @@ This project is managed with Docker. Please have Docker installed.
 - **Project Management**: [cmake](https://cmake.org)
 - **Profiler**: [gprof](https://sourceware.org/binutils/docs/gprof/)
 - **Static Analysis**: [scan-build](https://clang-analyzer.llvm.org/scan-build.html)
-- **Testing**: [pytest](https://docs.pytest.org/en/latest/) + [cffi](https://cffi.readthedocs.io/en/latest/)
+- **Testing**: [ctest](https://github.com/bvdberg/ctest) + [pytest](https://docs.pytest.org/en/latest/) + [cffi](https://cffi.readthedocs.io/en/latest/)
 
 ## Contact
 

@@ -8,13 +8,21 @@ project({{cookiecutter.project_slug}}
 		VERSION {{cookiecutter.version}}
 		LANGUAGES C)
 
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 set(CMAKE_C_STANDARD 99)
+
+#
+# Test(s)
+#
+include(CTest)
 
 #
 # Directory(s)
 #
 
-add_subdirectory(src)
+add_subdirectory({{cookiecutter.app_slug}})
+add_subdirectory({{cookiecutter.lib_slug}})
+add_subdirectory(tests)
 
 #
 # Dependency(s)
