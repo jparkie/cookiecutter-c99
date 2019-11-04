@@ -118,17 +118,7 @@ This project is managed with Docker. Please have Docker installed.
 │   └── .gitkeep
 ├── conanfile.txt
 ├── extern
-│   ├── .gitkeep
-│   └── ctest
-│       ├── .git
-│       ├── .gitignore
-│       ├── LICENSE
-│       ├── Makefile
-│       ├── README.md
-│       ├── ctest.h
-│       ├── ctest_output.png
-│       ├── main.c
-│       └── mytests.c
+│   └── .gitkeep
 ├── tests
 │   ├── .gitkeep
 │   ├── CMakeLists.txt
@@ -153,5 +143,5 @@ This project is managed with Docker. Please have Docker installed.
     └── src
         └── {{cookiecutter.lib_slug}}.c
 
-14 directories, 32 files
+13 directories, 23 files
 ```

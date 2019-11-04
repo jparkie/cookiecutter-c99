@@ -85,6 +85,7 @@ uninstall-docker:
 	docker rmi --force cookiecutter_c99
 
 init: .pre-commit
+	cd extern && git submodule add https://github.com/bvdberg/ctest.git
 
 docker-c99: .docker/cookiecutter_c99
 	$(DOCKER_INTERACTIVE_C99)
@@ -117,11 +118,11 @@ format: .docker/cookiecutter_c99
 lint: .docker/cookiecutter_c99
 	$(DOCKER_RUN_C99) sh -c "find ./{{cookiecutter.app_slug}} ./{{cookiecutter.lib_slug}} -type f -name '*.[c|h]' | xargs oclint -p=$(BUILD_DIR)"
 
-run: .docker/cookiecutter_c99
-	$(DOCKER_RUN_C99) sh -c "./$(BUILD_DIR)/{{cookiecutter.app_slug}}/{{cookiecutter.app_slug}}"
-
 static-analysis: .docker/cookiecutter_c99
 	$(DOCKER_RUN_C99) sh -c "cd $(BUILD_DIR) && scan-build make"
+
+run: .docker/cookiecutter_c99
+	$(DOCKER_RUN_C99) sh -c "./$(BUILD_DIR)/{{cookiecutter.app_slug}}/{{cookiecutter.app_slug}}"
 
 test-unit: .docker/cookiecutter_c99
 	$(DOCKER_RUN_C99) sh -c "cd $(BUILD_DIR) \

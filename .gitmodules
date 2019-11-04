@@ -1,3 +1,0 @@
-[submodule "{{cookiecutter.project_slug}}/extern/ctest"]
-	path = {{cookiecutter.project_slug}}/extern/ctest
-	url = https://github.com/bvdberg/ctest.git

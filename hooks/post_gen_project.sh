@@ -18,8 +18,6 @@ function echo_info() {
 
 echo_info "Initializing Git"
 git init
-git add .
-git commit -n -m "Initial Commit"
 
 #
 # Step 2:
@@ -27,6 +25,14 @@ git commit -n -m "Initial Commit"
 
 echo_info "Initializing Project"
 make init
+
+#
+# Step 3:
+#
+
+echo_info "Committing"
+git add .
+git commit -n -m "Initial Commit"
 
 #
 # Done:
