@@ -99,7 +99,7 @@ clean:
 	rm -rf $(BUILD_DIR)
 	rm -rf .hypothesis
 	rm -rf .pytest_cache
-	rm -rf ./tests/functional/{{cookiecutter.lib_slug}}_cffi/_{{cookiecutter.lib_slug}}_cffi.*
+	rm -rf ./test/functional/{{cookiecutter.lib_slug}}_cffi/_{{cookiecutter.lib_slug}}_cffi.*
 	find . -name '*.pyc' -delete
 	find . -name '__pycache__' -delete
 
@@ -107,7 +107,7 @@ compile: .docker/cookiecutter_c99 .build .conan
 	$(DOCKER_RUN_C99) sh -c "cd $(BUILD_DIR) && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON .. && make"
 
 compile-cffi: .docker/cookiecutter_c99
-	$(DOCKER_RUN_C99) sh -c "cd tests/functional/{{cookiecutter.lib_slug}}_cffi \
+	$(DOCKER_RUN_C99) sh -c "cd test/functional/{{cookiecutter.lib_slug}}_cffi \
 		&& python3 -m compile_cffi \
 			/repo/{{cookiecutter.lib_slug}}/include \
 			/repo/$(BUILD_DIR)/{{cookiecutter.lib_slug}}"
@@ -131,12 +131,12 @@ test-unit: .docker/cookiecutter_c99
 		&& ctest --verbose \
 		&& lcov --capture --directory ./{{cookiecutter.lib_slug}} --output-file coverage_test.info \
 		&& lcov --add-tracefile coverage_base.info --add-tracefile coverage_test.info --output-file coverage_total.info \
-		&& lcov --remove coverage_total.info '{{cookiecutter.app_slug}}/*' 'tests/unit/*' --output-file coverage_total_filtered.info \
+		&& lcov --remove coverage_total.info '{{cookiecutter.app_slug}}/*' 'test/unit/*' --output-file coverage_total_filtered.info \
 		&& genhtml coverage_total_filtered.info --output-directory coverage"
 	@echo "Coverage Report: $$(pwd)/$(BUILD_DIR)/coverage/index.html"
 
 test-functional: .docker/cookiecutter_c99
-	$(DOCKER_RUN_C99) sh -c "cd tests/functional && pytest -rA --strict --hypothesis-show-statistics"
+	$(DOCKER_RUN_C99) sh -c "cd test/functional && pytest -rA --strict --hypothesis-show-statistics"
 
 hook-format: .docker/cookiecutter_c99
 	$(DOCKER_RUN_C99) sh -c "git ls-files -- './{{cookiecutter.app_slug}}/*.c' './{{cookiecutter.app_slug}}/*.h' './{{cookiecutter.lib_slug}}/*.c' './{{cookiecutter.lib_slug}}/*.h' | xargs clang-format -i -style=file -verbose"

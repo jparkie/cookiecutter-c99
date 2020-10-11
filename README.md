@@ -119,7 +119,7 @@ This project is managed with Docker. Please have Docker installed.
 ├── conanfile.txt
 ├── extern
 │   └── .gitkeep
-├── tests
+├── test
 │   ├── .gitkeep
 │   ├── CMakeLists.txt
 │   ├── functional

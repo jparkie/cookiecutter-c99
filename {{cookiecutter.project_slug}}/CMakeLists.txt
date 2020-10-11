@@ -22,7 +22,7 @@ include(CTest)
 
 add_subdirectory({{cookiecutter.app_slug}})
 add_subdirectory({{cookiecutter.lib_slug}})
-add_subdirectory(tests)
+add_subdirectory(test)
 
 #
 # Dependency(s)
